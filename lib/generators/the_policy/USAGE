@@ -1,0 +1,40 @@
+---------------------------------------
+ThePolicy
+---------------------------------------
+
+!!! Description:
+
+  This generators helps to install ThePolicy gem into your Application
+
+!!! This text:
+
+  > bundle exec rails g the_policy help
+
+!!! Generators:
+
+  > bundle exec rails g the_policy install
+  - Install config file and models
+
+  > bundle exec rails g the_policy config
+  - Install config file
+
+  > bundle exec rails g the_policy models
+  - Install models
+
+  > bundle exec rails g the_policy controllers
+  - Install controllers
+
+  > bundle exec rails g the_policy locales
+  - Install locales
+
+!!! Rake Tasks:
+
+  > rake db:the_policy:admin
+  - Create Admin Policy
+
+!!! Migrations:
+  > bundle exec rake the_policy_engine:install:migrations
+
+---------------------------------------
+~ ThePolicy
+---------------------------------------
