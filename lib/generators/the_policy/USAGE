@@ -29,8 +29,8 @@ ThePolicy
 
 !!! Rake Tasks:
 
-  > rake db:the_policy:admin
-  - Create Admin Policy
+  > rake db:the_policy:operator
+  - Create Operator Policy
 
 !!! Migrations:
   > bundle exec rake the_policy_engine:install:migrations

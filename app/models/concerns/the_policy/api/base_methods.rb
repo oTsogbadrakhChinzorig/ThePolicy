@@ -14,8 +14,8 @@ module ThePolicy
         section_name =  section_name.to_slug_param(sep: '_')
         rule_name    =  rule_name.to_slug_param(sep: '_')
 
-        return true  if hash.try(:[], 'system').try(:[], 'administrator')
-        return true  if hash.try(:[], 'moderator').try(:[], section_name)
+        return true  if hash.try(:[], 'system').try(:[], 'operator')
+        return true  if hash.try(:[], 'admin').try(:[], section_name)
 
         return false unless hash[section_name]
         return false unless hash[section_name].key? rule_name
@@ -33,12 +33,12 @@ module ThePolicy
         false
       end
 
-      def moderator? section_name
+      def admin? section_name
         section_name = section_name.to_slug_param(sep: '_')
         has_policy? section_name, 'any_crazy_name'
       end
 
-      def admin?
+      def operator?
         has_policy? 'any_crazy_name', 'any_crazy_name'
       end
     end

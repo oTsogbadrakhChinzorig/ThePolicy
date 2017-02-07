@@ -15,7 +15,7 @@ module ThePolicy
                     :default_user_policy,
                     :access_denied_method,
                     :login_required_method,
-                    :first_user_should_be_admin
+                    :first_user_should_be_operator
   end
 
   configure do |config|
@@ -25,6 +25,6 @@ module ThePolicy
     config.access_denied_method       = nil
     config.login_required_method      = nil
     config.destroy_strategy           = nil
-    config.first_user_should_be_admin = false
+    config.first_user_should_be_operator = false
   end
 end

@@ -8,7 +8,7 @@ ThePolicy.configure do |config|
   # config.layout = :the_policy_management_panel
 
   # config.default_user_policy          = nil
-  # config.first_user_should_be_admin = false
+  # config.first_user_should_be_operator = false
   # config.access_denied_method       = :access_denied
 
   # Dependent of Rails::VERSION

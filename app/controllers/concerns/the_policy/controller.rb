@@ -18,11 +18,11 @@ module ThePolicy
     end
 
     def policy_required
-      policy_access_denied unless current_user.try(:has_policy?, controller_path, action_name)
+      policy_access_denied unless current_membership.try(:has_policy?, controller_path, action_name)
     end
 
     def owner_required
-      policy_access_denied unless current_user.try(:owner?, @owner_check_object)
+      policy_access_denied unless current_membership.try(:owner?, @owner_check_object)
     end
 
     def the_policy_default_access_denied_response
@@ -34,16 +34,16 @@ module ThePolicy
 
           controller_name:      controller_path,
           action_name:          action_name,
-          has_access_to_action: current_user.try(:has_policy?, controller_path, action_name),
+          has_access_to_action: current_membership.try(:has_policy?, controller_path, action_name),
 
-          current_user: { id: current_user.try(:id) },
+          current_membership: { id: current_membership.try(:id) },
 
           owner_check_object: {
             owner_check_object_id:    @owner_check_object.try(:id),
             owner_check_object_class: @owner_check_object.try(:class).try(:to_s)
           },
 
-          has_access_to_object: current_user.try(:owner?, @owner_check_object)
+          has_access_to_object: current_membership.try(:owner?, @owner_check_object)
         }, status: 401
       else
         # When the user paste non authorized URL in browser the REFERER is blank and application crash

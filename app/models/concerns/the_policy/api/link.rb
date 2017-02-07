@@ -1,13 +1,14 @@
 module ThePolicy
   module Api
-    module User
+    # Link with User module
+    module Link
       extend ActiveSupport::Concern
 
       include ThePolicy::Api::BaseMethods
 
       # HELPERS
 
-      # version for `User`  model
+      # version for `Link`  model
       def policy_hash
         @policy_hash ||= policy.try(:to_hash) || {}
       end
@@ -32,10 +33,10 @@ module ThePolicy
       # Check for owner _object_ if owner field is not :user_id
       def owner? obj
         return false unless obj
-        return true  if admin?
+        return true  if operator?
 
         section_name = obj.class.to_s.tableize
-        return true if moderator?(section_name)
+        return true if admin?(section_name)
 
         # obj is User, simple way to define user_id
         return id == obj.id if obj.is_a?(self.class)
@@ -56,8 +57,8 @@ module ThePolicy
           self.policy = default_policy if default_policy
         end
 
-        if self.class.count.zero? && ThePolicy.config.first_user_should_be_admin
-          self.policy = ThePolicy.create_admin!
+        if self.class.count.zero? && ThePolicy.config.first_user_should_be_operator
+          self.policy = ThePolicy.create_operator!
         end
       end
     end
