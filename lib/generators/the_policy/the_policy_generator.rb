@@ -35,8 +35,8 @@ class ThePolicyGenerator < Rails::Generators::NamedBase
   end
 
   def cp_models
-    copy_file 'app/models/_templates_/policies.rb',
-              'app/models/policies.rb'
+    copy_file 'app/models/_templates_/policy.rb',
+              'app/models/policy.rb'
   end
 
   def cp_controllers
